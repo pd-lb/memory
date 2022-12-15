@@ -1,5 +1,48 @@
 .card {
-  border: 1px solid #7fffd4;
-  background-color: #24795c;
+  /* part of the flipping effect */
+  perspective: 1000px;
+  overflow: hidden;
+  font-size: 4.5rem;
+  position: relative;
+}
+
+.flipped .card_inner {
+  transform: rotateY(180deg);
+}
+
+.card_inner {
+  position: relative;
+  /* to keep the card always perfectly square */
   aspect-ratio: 1;
+  /* part of the flipping effect */
+  transition: transform 0.25s ease-in-out;
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+}
+
+.card_front,
+.card_back {
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+}
+
+.card_front {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transform: rotateY(180deg);
+  background: rgb(180, 180, 180);
+  background: radial-gradient(circle, rgb(180, 180, 180, 1) 0%, rgb(180, 180, 180, 0.9) 100%);
+}
+
+.card_back {
+  background: rgb(36, 121, 92);
+  background: radial-gradient(circle, rgba(36, 121, 92, 1) 0%, rgba(36, 121, 92, 0.5) 100%);
 }
