@@ -20,14 +20,15 @@ const Board = ({ cards, activePlayer, setActivePlayer, score, setScore }: Props)
 
     if (flippedCards.length === 1) {
       if (card.symbol === flippedCards[0].symbol) {
+        // indicate who matched the cards
         card.matchedBy = activePlayer
         flippedCards[0].matchedBy = activePlayer
         setFlippedCards([])
 
-        let scoreCopy = [...score]
+        // update active player's score
+        const scoreCopy = [...score]
         scoreCopy[activePlayer] = ++scoreCopy[activePlayer]
         setScore(scoreCopy)
-        // TODO: check if there's a win
       } else {
         setTimeout(() => {
           setActivePlayer(Number(!activePlayer))

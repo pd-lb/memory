@@ -4,19 +4,14 @@ import PlayerInfo from '../PlayerInfo/PlayerInfo'
 import { generateCards } from '../../utils/generateCards'
 
 const GameContainer = () => {
-  const [cardPairs, setCardPairs] = useState(8)
+  const cardPairs = 8
   const [cards, setCards] = useState(generateCards(cardPairs))
   const [activePlayer, setActivePlayer] = useState(0)
   const [score, setScore] = useState([0, 0])
-  const [allCardsMatched, setAllCardsMatched] = useState(false)
 
   return (
     <div className='game-container'>
-      <PlayerInfo
-        activePlayer={allCardsMatched ? score.indexOf(Math.max(...score)) : activePlayer}
-        score={score}
-        allCardsMatched={allCardsMatched}
-      />
+      <PlayerInfo activePlayer={activePlayer} score={score} cardPairs={cardPairs} />
       <Board
         cards={cards}
         activePlayer={activePlayer}
