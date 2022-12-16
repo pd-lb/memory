@@ -7,17 +7,23 @@ const GameContainer = () => {
   const [cardPairs, setCardPairs] = useState(8)
   const [cards, setCards] = useState(generateCards(cardPairs))
   const [activePlayer, setActivePlayer] = useState(0)
-  const [scores, setScores] = useState([0, 0])
+  const [score, setScore] = useState([0, 0])
   const [allCardsMatched, setAllCardsMatched] = useState(false)
 
   return (
     <div className='game-container'>
       <PlayerInfo
-        activePlayer={allCardsMatched ? scores.indexOf(Math.max(...scores)) : activePlayer}
-        scores={scores}
+        activePlayer={allCardsMatched ? score.indexOf(Math.max(...score)) : activePlayer}
+        score={score}
         allCardsMatched={allCardsMatched}
       />
-      <Board cards={cards} />
+      <Board
+        cards={cards}
+        activePlayer={activePlayer}
+        setActivePlayer={setActivePlayer}
+        score={score}
+        setScore={setScore}
+      />
     </div>
   )
 }

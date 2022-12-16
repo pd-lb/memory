@@ -2,16 +2,20 @@ import React from 'react'
 import './Card.css'
 
 interface Props {
-  onClick: () => void
-  isFlipped: boolean
+  id: number
   symbol: string
+  onClick?: () => void
+  isFlipped?: boolean
+  matchedBy?: number | null
 }
 
-const Card = ({ symbol, isFlipped, onClick }: Props) => (
-  <div className={`card ${isFlipped ? 'flipped' : ''}`} onClick={onClick}>
+const Card = ({ symbol, onClick, isFlipped = false, matchedBy = null }: Props) => (
+  <div onClick={onClick && onClick} className={`card ${isFlipped ? 'flipped' : ''}`}>
     <div className='card_inner'>
       <div className='card_back' />
-      <div className='card_front'>{symbol}</div>
+      <div className={`card_front ${matchedBy != null ? `player-${matchedBy}-match` : ''}`}>
+        {symbol}
+      </div>
     </div>
   </div>
 )
