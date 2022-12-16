@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Board from '../Board/Board'
 import PlayerInfo from '../PlayerInfo/PlayerInfo'
 import './GameContainer.css'
+import { generateCards } from '../../utils/generateCards'
 
-interface Props {
-  cardsCount: number
-}
+function GameContainer() {
+  const [cardPairs, setCardPairs] = useState(8)
+  const [cards, setCards] = useState(generateCards(cardPairs))
 
-function GameContainer({ cardsCount }: Props) {
   return (
     <div className='game-container'>
       <PlayerInfo />
-      <Board cardsCount={cardsCount} />
+      <Board cards={cards} />
     </div>
   )
 }

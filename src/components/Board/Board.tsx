@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { ComponentProps } from 'react'
 import Card from '../Card/Card'
 import './Board.css'
 interface Props {
-  cardsCount: number
+  cards: ComponentProps<typeof Card>[]
 }
-function Board({ cardsCount }: Props) {
+function Board({ cards }: Props) {
   return (
     <div className='board'>
-      {Array.from(Array(cardsCount)).map((_, key) => (
-        <Card key={key} />
+      {cards.map((card, key) => (
+        <Card decimalCode={card.decimalCode} key={key} />
       ))}
     </div>
   )
