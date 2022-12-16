@@ -11,7 +11,7 @@ const shuffleArray = (arr: any[]) => {
 }
 export const generateCards = (cardPairs: number) => {
   const safeEmojiMin = 127780
-  const safeEmojiMax = 127895
+  const safeEmojiMax = 127891
   const decimalCodes: number[] = []
   const cards: ComponentProps<typeof Card>[] = []
 
@@ -19,10 +19,11 @@ export const generateCards = (cardPairs: number) => {
     const decimalCode = Math.floor(Math.random() * (safeEmojiMax - safeEmojiMin)) + safeEmojiMin
     if (!decimalCodes.includes(decimalCode)) {
       decimalCodes.push(decimalCode)
+
+      const frontSymbol = String.fromCodePoint(decimalCode)
+      cards.push({ frontSymbol }, { frontSymbol })
     }
   }
-
-  decimalCodes.forEach(decimalCode => cards.push({ decimalCode }, { decimalCode }))
 
   return shuffleArray(cards)
 }

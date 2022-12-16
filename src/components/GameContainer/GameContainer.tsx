@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Board from '../Board/Board'
 import PlayerInfo from '../PlayerInfo/PlayerInfo'
-import './GameContainer.css'
 import { generateCards } from '../../utils/generateCards'
 
 const GameContainer = () => {

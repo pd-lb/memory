@@ -9,7 +9,10 @@ interface Props {
 const PlayerInfo = ({ activePlayer, allCardsMatched, scores }: Props) => (
   <div className='player-info'>
     {[1, 2].map((_, index) => (
-      <div className={`player player-${index + 1} ${activePlayer === index ? 'active' : ''}`}>
+      <div
+        key={index}
+        className={`player player-${index + 1} ${activePlayer === index ? 'active' : ''}`}
+      >
         <div className='player-name'>Player {index + 1}</div>
         <div className='player-score'>score: {scores[index]}</div>
         {!allCardsMatched && activePlayer === index && (

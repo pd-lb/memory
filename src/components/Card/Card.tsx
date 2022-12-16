@@ -4,12 +4,11 @@ import './Card.css'
 interface Props {
   // onClick: () => void
   // isFlipped: boolean
-  decimalCode: number
+  frontSymbol: string
 }
 
-function Card({ decimalCode }: Props) {
+const Card = ({ frontSymbol }: Props) => {
   const [isFlipped, setIsFlipped] = useState(false)
-  const frontSymbol = String.fromCodePoint(decimalCode)
 
   return (
     <div className={`card ${isFlipped ? 'flipped' : ''}`} onClick={() => setIsFlipped(!isFlipped)}>
