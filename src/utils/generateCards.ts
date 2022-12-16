@@ -7,7 +7,7 @@ const shuffleArray = (arr: any[]): any[] => {
   return newArr
 }
 
-export const generateCards = (pairs: number) => {
+const generateCards = (pairs: number) => {
   const safeEmojiRangeStart = 127780
   const safeEmojiRangeEnd = 127891
   const cardSymbols: string[] = []
@@ -24,3 +24,5 @@ export const generateCards = (pairs: number) => {
 
   return shuffleArray(cardSymbols).map((symbol, id) => ({ id, symbol }))
 }
+
+export default generateCards
