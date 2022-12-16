@@ -4,6 +4,11 @@
   overflow: hidden;
   font-size: 4.3rem;
   position: relative;
+  cursor: pointer;
+}
+
+.flipped {
+  cursor: default;
 }
 
 .flipped .card_inner {
