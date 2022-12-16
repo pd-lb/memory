@@ -1,4 +1,30 @@
 .player-info {
-  margin: 1rem;
-  /*border: 1px solid #a93df3;*/
+  margin: 1.5rem auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 75vmin;
+}
+
+.player {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.player-name {
+  font-weight: bold;
+  font-size: larger;
+  line-height: 1.5;
+}
+
+.player-1.active {
+  background: rgba(255, 81, 81, 0.7);
+}
+
+.player-2.active {
+  background: rgba(81, 188, 255, 0.7);
+}
+
+.player-message {
+  line-height: 2;
 }

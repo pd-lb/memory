@@ -42,6 +42,14 @@
   background: radial-gradient(circle, rgb(180, 180, 180, 1) 0%, rgb(180, 180, 180, 0.9) 100%);
 }
 
+.card_front.player-1-match {
+  background: rgba(255, 81, 81, 0.55);
+}
+
+.card_front.player-2-match {
+  background: rgba(81, 188, 255, 0.55);
+}
+
 .card_back {
   background: rgb(36, 121, 92);
   background: radial-gradient(circle, rgba(36, 121, 92, 1) 0%, rgba(36, 121, 92, 0.5) 100%);
