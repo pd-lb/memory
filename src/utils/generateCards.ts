@@ -1,7 +1,4 @@
-import { ComponentProps } from 'react'
-import Card from '../components/Card/Card'
-
-const shuffleArray = (arr: any[]) => {
+const shuffleArray = (arr: any[]): any[] => {
   const newArr = arr.slice()
   for (let i = newArr.length - 1; i > 0; i--) {
     const rand = Math.floor(Math.random() * (i + 1))
@@ -9,21 +6,21 @@ const shuffleArray = (arr: any[]) => {
   }
   return newArr
 }
-export const generateCards = (cardPairs: number) => {
-  const safeEmojiMin = 127780
-  const safeEmojiMax = 127891
-  const decimalCodes: number[] = []
-  const cards: ComponentProps<typeof Card>[] = []
 
-  while (decimalCodes.length < cardPairs) {
-    const decimalCode = Math.floor(Math.random() * (safeEmojiMax - safeEmojiMin)) + safeEmojiMin
-    if (!decimalCodes.includes(decimalCode)) {
-      decimalCodes.push(decimalCode)
+export const generateCards = (pairs: number) => {
+  const safeEmojiRangeStart = 127780
+  const safeEmojiRangeEnd = 127891
+  const cardSymbols: string[] = []
 
-      const frontSymbol = String.fromCodePoint(decimalCode)
-      cards.push({ frontSymbol }, { frontSymbol })
+  while (cardSymbols.length < pairs * 2) {
+    const decimalCode =
+      Math.floor(Math.random() * (safeEmojiRangeEnd - safeEmojiRangeStart)) + safeEmojiRangeStart
+    const cardSymbol = String.fromCodePoint(decimalCode)
+
+    if (!cardSymbols.includes(cardSymbol)) {
+      cardSymbols.push(cardSymbol, cardSymbol)
     }
   }
 
-  return shuffleArray(cards)
+  return shuffleArray(cardSymbols).map((symbol, id) => ({ id, symbol }))
 }

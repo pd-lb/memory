@@ -38,8 +38,8 @@
 .card_front {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   transform: rotateY(180deg);
-  background: rgb(180, 180, 180);
-  background: radial-gradient(circle, rgb(180, 180, 180, 1) 0%, rgb(180, 180, 180, 0.9) 100%);
+  background: rgb(218, 218, 218);
+  background: radial-gradient(circle, rgb(218, 218, 218, 1) 0%, rgb(218, 218, 218, 0.9) 100%);
 }
 
 .card_front.player-1-match {

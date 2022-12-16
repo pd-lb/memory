@@ -1,23 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Card.css'
 
 interface Props {
-  // onClick: () => void
-  // isFlipped: boolean
-  frontSymbol: string
+  onClick: () => void
+  isFlipped: boolean
+  symbol: string
 }
 
-const Card = ({ frontSymbol }: Props) => {
-  const [isFlipped, setIsFlipped] = useState(false)
-
-  return (
-    <div className={`card ${isFlipped ? 'flipped' : ''}`} onClick={() => setIsFlipped(!isFlipped)}>
-      <div className='card_inner'>
-        <div className='card_back' />
-        <div className='card_front'>{frontSymbol}</div>
-      </div>
+const Card = ({ symbol, isFlipped, onClick }: Props) => (
+  <div className={`card ${isFlipped ? 'flipped' : ''}`} onClick={onClick}>
+    <div className='card_inner'>
+      <div className='card_back' />
+      <div className='card_front'>{symbol}</div>
     </div>
-  )
-}
+  </div>
+)
 
 export default Card
