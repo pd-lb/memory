@@ -1,0 +1,43 @@
+.player-info {
+  margin: 1.5rem auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 75vmin;
+  text-align: center;
+}
+
+.player-1,
+.player-2 {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.player-1.active, .player-1.winner {
+  outline: 3px solid rgba(255, 81, 81, 0.7);
+}
+
+.player-2.active, .player-2.winner {
+  outline: 3px solid rgba(81, 188, 255, 0.7);
+}
+
+.player-name {
+  font-weight: bold;
+  font-size: larger;
+  line-height: 1.5;
+}
+
+.player-message {
+  line-height: 2;
+}
+
+.winner {
+  animation: blink 1.5s;
+  animation-iteration-count: 3;
+}
+
+@keyframes blink {
+  50% {
+    outline-color: transparent;
+  }
+}
