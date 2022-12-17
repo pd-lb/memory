@@ -2,6 +2,8 @@
 
 A classic game of memory. The goal is to match more pairs of cards then another player.
 
+You can check it out here: https://pd-lb.github.io/memory/
+
 ### Extra features
 - unique set of card imagery in each game
 - works great even on mobile devices: ![mobile screenshot](img/mobile_screen.jpg)
