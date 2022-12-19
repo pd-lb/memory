@@ -15,7 +15,14 @@ const Menu = ({ onNewGameClick }: Props) => {
       </div>
       {open ? (
         <div className='menu-content'>
-          <button onClick={onNewGameClick}>New Game</button>
+          <button
+            onClick={() => {
+              setOpen(false)
+              onNewGameClick()
+            }}
+          >
+            New Game
+          </button>
         </div>
       ) : null}
     </div>
