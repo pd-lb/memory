@@ -8,14 +8,14 @@ interface Props {
 }
 
 const getMessage = (player: number, activePlayer: number, winners: number[]) => {
+  if (!winners.length && player === activePlayer) {
+    return 'Your turn'
+  }
   if (winners.length > 1) {
     return "It's a draw!"
   }
   if (winners.includes(player)) {
     return 'You win!'
-  }
-  if (player === activePlayer) {
-    return 'Your turn'
   }
 }
 
@@ -37,9 +37,9 @@ const PlayerInfo = ({ activePlayer, score, cardPairs }: Props) => {
       {[1, 2].map((_, index) => (
         <div
           key={index}
-          className={`player-${index + 1} ${activePlayer === index ? 'active' : ''} ${
-            winners.includes(index) ? 'winner' : ''
-          }`}
+          className={`player-${index + 1} ${
+            !winners.length && activePlayer === index ? 'active' : ''
+          } ${winners.includes(index) ? 'winner' : ''}`}
         >
           <div className='player-name'>Player {index + 1}</div>
           <div className='player-score'>score: {score[index]}</div>
