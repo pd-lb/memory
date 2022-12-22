@@ -5,6 +5,8 @@
   font-size: 4.3rem;
   position: relative;
   cursor: pointer;
+  width: 100%;
+  max-width: 12vmin;
 }
 
 .flipped {
@@ -59,4 +61,9 @@
 .card_back {
   background: rgb(153, 153, 153);
   background: radial-gradient(circle, rgb(153, 153, 153, 1) 0%, rgba(172, 172, 172, 0.5) 100%);
+}
+
+/* hover effect to improve UX for overlapping cards */
+.card_back:hover {
+  opacity: 0.85;
 }
