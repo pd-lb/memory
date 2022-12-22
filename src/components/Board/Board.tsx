@@ -1,5 +1,6 @@
 import React, { ComponentProps, useState } from 'react'
 import Card from '../Card/Card'
+import { useCardTransformations } from './utils/useCardTransformations'
 import './Board.css'
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 
 const Board = ({ cards, activePlayer, setActivePlayer, score, setScore }: Props) => {
   const [flippedCards, setFlippedCards] = useState<ComponentProps<typeof Card>[]>([])
+  const cardTransformations = useCardTransformations(cards)
   const handleCardFlip = (card: ComponentProps<typeof Card>) => {
     if (card.matchedBy != null || flippedCards.includes(card) || flippedCards.length > 1) {
       return
@@ -42,12 +44,13 @@ const Board = ({ cards, activePlayer, setActivePlayer, score, setScore }: Props)
     <div className='board'>
       {cards.map(card => (
         <Card
+          {...card}
           key={card.id}
-          id={card.id}
-          symbol={card.symbol}
           onClick={() => handleCardFlip(card)}
           isFlipped={flippedCards.includes(card) || card.matchedBy != null}
-          matchedBy={card.matchedBy}
+          topOffset={cardTransformations[card.id].top}
+          leftOffset={cardTransformations[card.id].left}
+          rotation={cardTransformations[card.id].rotation}
         />
       ))}
     </div>
