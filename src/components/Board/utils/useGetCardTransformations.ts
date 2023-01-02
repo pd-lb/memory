@@ -1,6 +1,6 @@
 import { ComponentProps, useMemo } from 'react'
 import { useViewportSize } from './useViewportSize'
-import Card from '../../Card/Card'
+import { Card } from '../../Card/Card'
 
 type CardTransformation = { top: number; left: number; rotation?: number }
 
@@ -40,5 +40,5 @@ export const useGetCardTransformations = (
     })
 
     return transformations
-  }, [cards])
+  }, [cards, maxCardOffset, maxCardOverlap])
 }

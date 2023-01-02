@@ -1,5 +1,5 @@
 import { ComponentProps, CSSProperties } from 'react'
-import Card from '../Card'
+import { Card } from '../Card'
 
 export const getCardStyle = ({
   topOffset,

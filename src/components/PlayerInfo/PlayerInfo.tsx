@@ -19,7 +19,7 @@ const getMessage = (player: number, activePlayer: number, winners: number[]) => 
   }
 }
 
-const PlayerInfo = ({ activePlayer, score, cardPairs }: Props) => {
+export const PlayerInfo = ({ activePlayer, score, cardPairs }: Props) => {
   const winners: number[] = []
 
   // TODO: extract getWinners
@@ -51,5 +51,3 @@ const PlayerInfo = ({ activePlayer, score, cardPairs }: Props) => {
     </div>
   )
 }
-
-export default PlayerInfo

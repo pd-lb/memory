@@ -1,3 +1,4 @@
+// the Fisher-Yates shuffling algorithm
 const shuffleArray = (arr: any[]): any[] => {
   const newArr = arr.slice()
   for (let i = newArr.length - 1; i > 0; i--) {
@@ -7,7 +8,7 @@ const shuffleArray = (arr: any[]): any[] => {
   return newArr
 }
 
-const generateCards = (pairs: number) => {
+export const generateCards = (pairs: number) => {
   const safeEmojiRangeStart = 127780
   const safeEmojiRangeEnd = 127891
   const cardSymbols: string[] = []
@@ -24,5 +25,3 @@ const generateCards = (pairs: number) => {
 
   return shuffleArray(cardSymbols).map((symbol, id) => ({ id, symbol }))
 }
-
-export default generateCards

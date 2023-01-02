@@ -1,5 +1,5 @@
 import React, { ComponentProps, useState } from 'react'
-import Card from '../Card/Card'
+import { Card } from '../Card/Card'
 import { useGetCardTransformations } from './utils/useGetCardTransformations'
 import './Board.css'
 
@@ -12,7 +12,8 @@ interface Props {
 }
 
 const FLIP_BACK_DELAY_MS = 1500
-const Board = ({ cards, activePlayer, setActivePlayer, score, setScore }: Props) => {
+
+export const Board = ({ cards, activePlayer, setActivePlayer, score, setScore }: Props) => {
   const [flippedCards, setFlippedCards] = useState<Props['cards']>([])
   const cardTransformations = useGetCardTransformations(cards)
 
@@ -67,5 +68,3 @@ const Board = ({ cards, activePlayer, setActivePlayer, score, setScore }: Props)
     </div>
   )
 }
-
-export default Board

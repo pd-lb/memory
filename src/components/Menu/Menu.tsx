@@ -5,7 +5,7 @@ interface Props {
   onNewGameClick: () => void
 }
 
-const Menu = ({ onNewGameClick }: Props) => {
+export const Menu = ({ onNewGameClick }: Props) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -28,5 +28,3 @@ const Menu = ({ onNewGameClick }: Props) => {
     </div>
   )
 }
-
-export default Menu

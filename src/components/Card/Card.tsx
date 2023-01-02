@@ -13,7 +13,7 @@ interface Props {
   rotation?: number | null
 }
 
-const Card = ({
+export const Card = ({
   symbol,
   onClick,
   isFlipped = false,
@@ -35,5 +35,3 @@ const Card = ({
     </div>
   </div>
 )
-
-export default Card

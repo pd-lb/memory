@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import './App.css'
-import PlayerInfo from './components/PlayerInfo/PlayerInfo'
-import Board from './components/Board/Board'
-import generateCards from './utils/generateCards'
-import Menu from './components/Menu/Menu'
+import { PlayerInfo } from './components/PlayerInfo/PlayerInfo'
+import { Board } from './components/Board/Board'
+import { generateCards } from './utils/generateCards'
+import { Menu } from './components/Menu/Menu'
 
-const App = () => {
+export const App = () => {
   const cardPairs = 8
   const [cards, setCards] = useState(generateCards(cardPairs))
   const [activePlayer, setActivePlayer] = useState(0)
@@ -32,5 +32,3 @@ const App = () => {
     </div>
   )
 }
-
-export default App
