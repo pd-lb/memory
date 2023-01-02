@@ -7,7 +7,7 @@ type CardTransformation = { top: number; left: number; rotation?: number }
 const isCardOverlapExceeded = (
   newOffset: CardTransformation,
   offsets: CardTransformation[],
-  maxOverlap = 110
+  maxOverlap: number
 ) =>
   offsets.some(existingOffset => {
     const xOverlap = Math.abs(existingOffset.left - newOffset.left) < maxOverlap
