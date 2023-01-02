@@ -6,7 +6,9 @@ You can check it out here: https://pd-lb.github.io/memory/
 
 ### Extra features
 - unique set of card imagery in each game
-- works great even on mobile devices: ![mobile screenshot](img/mobile_screen.jpg)
+- works great even on mobile devices
+
+![ screenshot](img/screenshot.png)
 
 ### How to run
 1. Checkout or download zip.
@@ -17,8 +19,7 @@ You can check it out here: https://pd-lb.github.io/memory/
 
 - bootstrapped using `create-react-app`
 - written in Typescript
-- minimalistic (no 3rd party libraries used)
-- uses the Fisher-Yates shuffling algorithm for more decent randomness than using e.g. `sort()` method.
+- uses the Fisher-Yates shuffling algorithm for increased randomness.
 
 #### Building the app
 
