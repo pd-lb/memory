@@ -1,7 +1,7 @@
 import { ComponentProps, CSSProperties } from 'react'
 import Card from '../Card'
 
-export const getStyle = ({
+export const getCardStyle = ({
   topOffset,
   leftOffset,
   rotation = 0,

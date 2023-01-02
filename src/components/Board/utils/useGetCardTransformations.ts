@@ -4,7 +4,7 @@ import Card from '../../Card/Card'
 
 type CardTransformation = { top: number; left: number; rotation?: number }
 
-const isOverlapping = (
+const isCardOverlapExceeded = (
   newOffset: CardTransformation,
   offsets: CardTransformation[],
   maxOverlap = 110
@@ -16,11 +16,15 @@ const isOverlapping = (
     return xOverlap && yOverlap
   })
 
-export const useCardTransformations = (cards: ComponentProps<typeof Card>[]) => {
+export const useGetCardTransformations = (
+  cards: ComponentProps<typeof Card>[]
+): CardTransformation[] => {
   const { vmin } = useViewportSize()
+  // TODO: explain the magic numbers
   const maxCardOverlap = vmin * 0.12 * 0.4
   const maxCardOffset = vmin * 0.9
-  const cardTransformations: CardTransformation[] = useMemo(() => {
+
+  return useMemo(() => {
     const transformations: CardTransformation[] = []
 
     cards.forEach(() => {
@@ -29,7 +33,7 @@ export const useCardTransformations = (cards: ComponentProps<typeof Card>[]) => 
       do {
         top = Math.floor(Math.random() * maxCardOffset)
         left = Math.floor(Math.random() * maxCardOffset)
-      } while (isOverlapping({ top, left }, transformations, maxCardOverlap))
+      } while (isCardOverlapExceeded({ top, left }, transformations, maxCardOverlap))
 
       // rotation can be a negative value
       transformations.push({ top, left, rotation: Math.floor(Math.random() * 24 - 12) })
@@ -37,6 +41,4 @@ export const useCardTransformations = (cards: ComponentProps<typeof Card>[]) => 
 
     return transformations
   }, [cards])
-
-  return cardTransformations
 }

@@ -20,8 +20,10 @@ const getMessage = (player: number, activePlayer: number, winners: number[]) => 
 }
 
 const PlayerInfo = ({ activePlayer, score, cardPairs }: Props) => {
-  let winners: number[] = []
+  const winners: number[] = []
 
+  // TODO: extract getWinners
+  // TODO: use useMemo?
   if (score[0] + score[1] === cardPairs) {
     if (score[0] > score[1]) {
       winners.push(0)
@@ -34,16 +36,16 @@ const PlayerInfo = ({ activePlayer, score, cardPairs }: Props) => {
 
   return (
     <div className='player-info'>
-      {[1, 2].map((_, index) => (
+      {[1, 2].map((_, playerIndex) => (
         <div
-          key={index}
-          className={`player-${index + 1} ${
-            !winners.length && activePlayer === index ? 'active' : ''
-          } ${winners.includes(index) ? 'winner' : ''}`}
+          key={playerIndex}
+          className={`player-${playerIndex + 1} ${
+            !winners.length && activePlayer === playerIndex ? 'active' : ''
+          } ${winners.includes(playerIndex) ? 'winner' : ''}`}
         >
-          <div className='player-name'>Player {index + 1}</div>
-          <div className='player-score'>score: {score[index]}</div>
-          <div className='player-message'>{getMessage(index, activePlayer, winners)}</div>
+          <div className='player-name'>Player {playerIndex + 1}</div>
+          <div className='player-score'>score: {score[playerIndex]}</div>
+          <div className='player-message'>{getMessage(playerIndex, activePlayer, winners)}</div>
         </div>
       ))}
     </div>
