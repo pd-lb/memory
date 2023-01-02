@@ -39,7 +39,7 @@ const PlayerInfo = ({ activePlayer, score, cardPairs }: Props) => {
       {[1, 2].map((_, playerIndex) => (
         <div
           key={playerIndex}
-          className={`player-${playerIndex + 1} ${
+          className={`player-${playerIndex} ${
             !winners.length && activePlayer === playerIndex ? 'active' : ''
           } ${winners.includes(playerIndex) ? 'winner' : ''}`}
         >
