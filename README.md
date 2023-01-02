@@ -8,6 +8,16 @@ You can check it out here: https://pd-lb.github.io/memory/
 - unique set of card imagery in each game
 - works great even on mobile devices: ![ screenshot](img/screenshot.jpg)
 
+### Ideas for future releases
+
+1. Broaden the range of emoji symbols used
+2. Play with no mouse - just a keyboard
+3. Add a way to play over the network (not on the same machine)
+4. Dark/light theme switching
+5. Config file (for UI theme, emojis used, other in-app variables)
+6. Add some subtle, non-distracting sound effects
+7. Game stats (number of attempts, number of turns/rounds, success ratio, high score).
+
 ### How to run
 1. Checkout or download zip.
 2. Run `npm i` and `npm start`.
