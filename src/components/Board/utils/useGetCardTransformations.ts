@@ -20,8 +20,9 @@ export const useGetCardTransformations = (
   cards: ComponentProps<typeof Card>[]
 ): CardTransformation[] => {
   const { vmin } = useViewportSize()
-  // TODO: explain the magic numbers
+  // cards should not overlap more than 40% of their max size (12vmin)
   const maxCardOverlap = vmin * 0.12 * 0.4
+  // cards should not be moved by more than 90% of vmin
   const maxCardOffset = vmin * 0.9
 
   return useMemo(() => {
@@ -36,6 +37,7 @@ export const useGetCardTransformations = (
       } while (isCardOverlapExceeded({ top, left }, transformations, maxCardOverlap))
 
       // rotation can be a negative value
+      // max rotation = 12deg either way
       transformations.push({ top, left, rotation: Math.floor(Math.random() * 24 - 12) })
     })
 
