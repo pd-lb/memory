@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import './PlayerInfo.css'
 
 interface Props {
@@ -19,35 +19,44 @@ const getMessage = (player: number, activePlayer: number, winners: number[]) => 
   }
 }
 
-export const PlayerInfo = ({ activePlayer, score, cardPairs }: Props) => {
+const getWinners = (score: Props['score'], cardPairs: Props['cardPairs']): number[] => {
   const winners: number[] = []
 
-  // TODO: extract getWinners
-  // TODO: use useMemo?
-  if (score[0] + score[1] === cardPairs) {
-    if (score[0] > score[1]) {
-      winners.push(0)
-    } else if (score[0] < score[1]) {
-      winners.push(1)
-    } else {
-      winners.push(0, 1)
-    }
+  // if there are still cards to be matched
+  if (score[0] + score[1] < cardPairs) {
+    return []
   }
+  if (score[0] >= score[1]) {
+    winners.push(0)
+  }
+  if (score[0] <= score[1]) {
+    winners.push(1)
+  }
+
+  return winners
+}
+
+export const PlayerInfo = ({ activePlayer, score, cardPairs }: Props) => {
+  const winners = useMemo(() => getWinners(score, cardPairs), [score, cardPairs])
 
   return (
     <div className='player-info'>
-      {[1, 2].map((_, playerIndex) => (
-        <div
-          key={playerIndex}
-          className={`player-${playerIndex} ${
-            !winners.length && activePlayer === playerIndex ? 'active' : ''
-          } ${winners.includes(playerIndex) ? 'winner' : ''}`}
-        >
-          <div className='player-name'>Player {playerIndex + 1}</div>
-          <div className='player-score'>score: {score[playerIndex]}</div>
-          <div className='player-message'>{getMessage(playerIndex, activePlayer, winners)}</div>
-        </div>
-      ))}
+      {[1, 2].map((_, playerIndex) => {
+        const message = getMessage(playerIndex, activePlayer, winners)
+
+        return (
+          <div
+            key={playerIndex}
+            className={`player-${playerIndex} ${
+              !winners.length && activePlayer === playerIndex ? 'active' : ''
+            } ${winners.includes(playerIndex) ? 'winner' : ''}`}
+          >
+            <div className='player-name'>Player {playerIndex + 1}</div>
+            <div className='player-score'>score: {score[playerIndex]}</div>
+            <div className='player-message'>{message}</div>
+          </div>
+        )
+      })}
     </div>
   )
 }
