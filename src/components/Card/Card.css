@@ -3,7 +3,7 @@
   /* part of the flipping effect */
   perspective: 1000px;
   overflow: hidden;
-  font-size: 4.3rem;
+  font-size: calc(14px + 6vmin);
   position: absolute;
   cursor: pointer;
   width: 100%;
