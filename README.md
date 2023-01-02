@@ -6,9 +6,7 @@ You can check it out here: https://pd-lb.github.io/memory/
 
 ### Extra features
 - unique set of card imagery in each game
-- works great even on mobile devices
-
-![ screenshot](img/screenshot.png)
+- works great even on mobile devices: ![ screenshot](img/screenshot.jpg)
 
 ### How to run
 1. Checkout or download zip.
