@@ -4,7 +4,7 @@
   perspective: 1000px;
   overflow: hidden;
   font-size: 4.3rem;
-  position: relative;
+  position: absolute;
   cursor: pointer;
   width: 100%;
   max-width: 12vmin;

@@ -1,35 +1,29 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import './Card.css'
-import { getCardStyle } from './utils/getCardStyle'
+import { CardTransformations, MemoCard } from '../../types'
+import { isNumber } from '../../utils/isNumber'
 
-interface Props {
-  id: number
-  symbol: string
-  onClick?: () => void
-  isFlipped?: boolean
-  matchedBy?: number | null
-  topOffset?: number | null
-  leftOffset?: number | null
-  rotation?: number | null
-}
+const getCardStyle = ({ top = 0, left = 0, rotation = 0 }: CardTransformations): CSSProperties => ({
+  top: `${top}px`,
+  left: `${left}px`,
+  transform: `rotate(${rotation}deg)`,
+})
 
 export const Card = ({
   symbol,
   onClick,
   isFlipped = false,
-  matchedBy = null,
-  topOffset = null,
-  leftOffset = null,
-  rotation = null,
-}: Props) => (
+  matchedBy,
+  transformations,
+}: MemoCard) => (
   <div
     onClick={onClick && onClick}
     className={`card ${isFlipped ? 'flipped' : ''}`}
-    style={getCardStyle({ topOffset, leftOffset, rotation })}
+    style={getCardStyle(transformations)}
   >
     <div className='card_inner'>
       <div className='card_back' />
-      <div className={`card_front ${matchedBy === null ? '' : `player-${matchedBy}-match`}`}>
+      <div className={`card_front ${isNumber(matchedBy) ? `player-${matchedBy}-match` : ''}`}>
         {symbol}
       </div>
     </div>

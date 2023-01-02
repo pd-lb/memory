@@ -1,28 +1,40 @@
-import React, { ComponentProps, useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Card } from '../Card/Card'
-import { useGetCardTransformations } from './utils/useGetCardTransformations'
+import { useGetCardsWithTransformations } from './utils/useGetCardsWithTransformations'
 import './Board.css'
+import { CardSymbols, MemoCard } from '../../types'
+import { isNumber } from '../../utils/isNumber'
 
 interface Props {
-  cards: ComponentProps<typeof Card>[]
+  cardSymbols: CardSymbols
   activePlayer: number
   setActivePlayer: (activePlayer: number) => void
   score: number[]
   setScore: (score: number[]) => void
 }
 
+interface CardFlipHandlerArgs {
+  card: MemoCard
+  flippedCards: MemoCard[]
+  setFlippedCards: (flippedCards: MemoCard[]) => void
+  activePlayer: Props['activePlayer']
+  setActivePlayer: Props['setActivePlayer']
+  score: Props['score']
+  setScore: Props['setScore']
+}
+
 const FLIP_BACK_DELAY_MS = 1500
 
-const handleCardFlip = (
-  card: ComponentProps<typeof Card>,
-  flippedCards: Props['cards'],
-  setFlippedCards: (flippedCards: Props['cards']) => void,
-  activePlayer: Props['activePlayer'],
-  setActivePlayer: Props['setActivePlayer'],
-  score: Props['score'],
-  setScore: Props['setScore']
-) => {
-  if (card.matchedBy != null || flippedCards.includes(card) || flippedCards.length > 1) {
+const handleCardFlip = ({
+  card,
+  flippedCards,
+  setFlippedCards,
+  activePlayer,
+  setActivePlayer,
+  score,
+  setScore,
+}: CardFlipHandlerArgs) => {
+  if (isNumber(card.matchedBy) || flippedCards.includes(card) || flippedCards.length > 1) {
     return
   }
   setFlippedCards([...flippedCards, card])
@@ -51,40 +63,34 @@ const handleCardFlip = (
   }
 }
 
-export const Board = ({ cards, activePlayer, setActivePlayer, score, setScore }: Props) => {
-  const [flippedCards, setFlippedCards] = useState<Props['cards']>([])
-  const cardTransformations = useGetCardTransformations(cards)
+export const Board = ({ cardSymbols, activePlayer, setActivePlayer, score, setScore }: Props) => {
+  const [flippedCards, setFlippedCards] = useState<MemoCard[]>([])
+  const cards = useGetCardsWithTransformations(cardSymbols)
+
   const onCardClick = useCallback(
-    (card: ComponentProps<typeof Card>) =>
-      handleCardFlip(
+    (card: MemoCard) =>
+      handleCardFlip({
         card,
         flippedCards,
         setFlippedCards,
         activePlayer,
         setActivePlayer,
         score,
-        setScore
-      ),
+        setScore,
+      }),
     [flippedCards, activePlayer, setActivePlayer, score, setScore]
   )
 
   return (
     <div className='board'>
-      {cards.map(card => {
-        const { top, left, rotation } = cardTransformations[card.id]
-
-        return (
-          <Card
-            {...card}
-            key={card.id}
-            onClick={() => onCardClick(card)}
-            isFlipped={flippedCards.includes(card) || card.matchedBy != null}
-            topOffset={top}
-            leftOffset={left}
-            rotation={rotation}
-          />
-        )
-      })}
+      {cards.map(card => (
+        <Card
+          {...card}
+          key={card.id}
+          onClick={() => onCardClick(card)}
+          isFlipped={flippedCards.includes(card) || isNumber(card.matchedBy)}
+        />
+      ))}
     </div>
   )
 }
