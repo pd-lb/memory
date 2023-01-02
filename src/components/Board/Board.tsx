@@ -5,7 +5,7 @@ import './Board.css'
 import { CardSymbols, MemoCard } from '../../types'
 import { isNumber } from '../../utils/isNumber'
 
-interface Props {
+interface BoardProps {
   cardSymbols: CardSymbols
   activePlayer: number
   setActivePlayer: (activePlayer: number) => void
@@ -17,10 +17,10 @@ interface CardFlipHandlerArgs {
   card: MemoCard
   flippedCards: MemoCard[]
   setFlippedCards: (flippedCards: MemoCard[]) => void
-  activePlayer: Props['activePlayer']
-  setActivePlayer: Props['setActivePlayer']
-  score: Props['score']
-  setScore: Props['setScore']
+  activePlayer: BoardProps['activePlayer']
+  setActivePlayer: BoardProps['setActivePlayer']
+  score: BoardProps['score']
+  setScore: BoardProps['setScore']
 }
 
 const FLIP_BACK_DELAY_MS = 1500
@@ -63,7 +63,13 @@ const handleCardFlip = ({
   }
 }
 
-export const Board = ({ cardSymbols, activePlayer, setActivePlayer, score, setScore }: Props) => {
+export const Board = ({
+  cardSymbols,
+  activePlayer,
+  setActivePlayer,
+  score,
+  setScore,
+}: BoardProps) => {
   const [flippedCards, setFlippedCards] = useState<MemoCard[]>([])
   const cards = useGetCardsWithTransformations(cardSymbols)
 
