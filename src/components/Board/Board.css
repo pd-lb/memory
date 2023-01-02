@@ -1,9 +1,9 @@
 .board {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2vmin;
-  margin: 0 auto;
+  /* in the random layout these rules don't matter */
+  /*display: grid;*/
+  /*grid-template-columns: repeat(4, 1fr);*/
+  /*gap: 2vmin;*/
+  /*margin: 0 auto;*/
+  /*width: 100%;*/
   position: relative;
-  width: 100%;
-  /*max-width: 75vmin;*/
 }

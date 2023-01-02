@@ -4,11 +4,13 @@ import { isCardPositionOverlapping } from './isCardPositionOverlapping'
 import { CardSymbols, MemoCard } from '../../../types'
 
 export const useGetCardsWithTransformations = (cardSymbols: CardSymbols): MemoCard[] => {
-  const { vmin } = useViewportSize()
+  const { vmin, height, width } = useViewportSize()
+  // approx. 12% of the viewport size, per CSS
+  const maxCardSizePx = vmin * 0.12
+  // approximately
+  const headerSizePx = 210
   // cards should not overlap more than 40% of their max size (12vmin)
-  const maxCardOverlap = vmin * 0.12 * 0.4
-  // cards should not be moved by more than 90% of vmin
-  const maxCardOffset = vmin * 0.9
+  const maxCardOverlap = maxCardSizePx * 0.4
 
   return useMemo(() => {
     const cardsWithTransformations: MemoCard[] = []
@@ -17,8 +19,8 @@ export const useGetCardsWithTransformations = (cardSymbols: CardSymbols): MemoCa
       let top: number, left: number
 
       do {
-        top = Math.floor(Math.random() * maxCardOffset)
-        left = Math.floor(Math.random() * maxCardOffset)
+        top = Math.random() * (height - headerSizePx - maxCardSizePx)
+        left = Math.random() * (width - maxCardSizePx)
       } while (isCardPositionOverlapping({ top, left }, cardsWithTransformations, maxCardOverlap))
 
       cardsWithTransformations.push({
@@ -34,5 +36,5 @@ export const useGetCardsWithTransformations = (cardSymbols: CardSymbols): MemoCa
     })
 
     return cardsWithTransformations
-  }, [cardSymbols, maxCardOffset, maxCardOverlap])
+  }, [cardSymbols, height, maxCardOverlap, maxCardSizePx, width])
 }
