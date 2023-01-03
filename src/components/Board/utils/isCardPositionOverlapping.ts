@@ -3,11 +3,11 @@ import { CardOffset, MemoCard } from '../../../types'
 export const isCardPositionOverlapping = (
   newOffset: CardOffset,
   cards: MemoCard[],
-  maxOverlap: number
+  minCardDistance: number
 ) =>
   cards.some(card => {
-    const xOverlap = Math.abs(card.transformations.left - newOffset.left) < maxOverlap
-    const yOverlap = Math.abs(card.transformations.top - newOffset.top) < maxOverlap
+    const xOverlap = Math.abs(card.transformations.left - newOffset.left) < minCardDistance
+    const yOverlap = Math.abs(card.transformations.top - newOffset.top) < minCardDistance
 
     return xOverlap && yOverlap
   })

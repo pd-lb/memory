@@ -9,8 +9,9 @@ export const useGetCardsWithTransformations = (cardSymbols: CardSymbols): MemoCa
   const maxCardSizePx = vmin * 0.12
   // approximately
   const headerSizePx = 210
-  // cards should not overlap more than 40% of their max size (12vmin)
-  const maxCardOverlap = maxCardSizePx * 0.4
+  // to avoid excessive overlap, cards should be positioned away from each other
+  // by no less than 40% of their size (width)
+  const minCardDistance = maxCardSizePx * 0.4
 
   return useMemo(() => {
     const cardsWithTransformations: MemoCard[] = []
@@ -21,7 +22,7 @@ export const useGetCardsWithTransformations = (cardSymbols: CardSymbols): MemoCa
       do {
         top = Math.random() * (height - headerSizePx - maxCardSizePx)
         left = Math.random() * (width - maxCardSizePx)
-      } while (isCardPositionOverlapping({ top, left }, cardsWithTransformations, maxCardOverlap))
+      } while (isCardPositionOverlapping({ top, left }, cardsWithTransformations, minCardDistance))
 
       cardsWithTransformations.push({
         ...cardSymbol,
@@ -36,5 +37,5 @@ export const useGetCardsWithTransformations = (cardSymbols: CardSymbols): MemoCa
     })
 
     return cardsWithTransformations
-  }, [cardSymbols, height, maxCardOverlap, maxCardSizePx, width])
+  }, [cardSymbols, height, minCardDistance, maxCardSizePx, width])
 }
